@@ -70,6 +70,12 @@ jobs:
           # Fix ion_system_heap.c - NR_IONCACHE_PAGES undefined - comment out these checks
           sed -i 's/global_zone_page_state(NR_IONCACHE_PAGES)/0/g' drivers/staging/android/ion/ion_system_heap.c || true
 
+          # Fix get_cached_platform_id - declared under CONFIG_OPLUS_WAKELOCK_PROFILER but
+          # called under OPLUS_FEATURE_POWERINFO_STANDBY (mismatched guards)
+          # Move declaration outside #if block so it's always available
+          sed -i '/int get_cached_platform_id(void);/d' include/soc/oplus/oplus_wakelock_profiler.h || true
+          sed -i '/#endif.*__OPLUS_WAKELOCK_PROFILER_H__/i int get_cached_platform_id(void);' include/soc/oplus/oplus_wakelock_profiler.h || true
+
       - name: Backport path_umount and get_cred_rcu (required for older kernels)
         run: |
           cd kernel
