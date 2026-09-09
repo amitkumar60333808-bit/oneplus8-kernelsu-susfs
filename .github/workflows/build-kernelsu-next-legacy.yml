@@ -297,9 +297,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: kernelsu-next-legacy-${{ github.run_number }}
-          name: KernelSU-Next Legacy Build ${{ github.run_number }}
+          name: KernelSU-Next Legacy OnePlus 9R Build ${{ github.run_number }}
           body: |
-            ## KernelSU-Next Legacy for OnePlus 8 Pro (LineageOS 23)
+            ## KernelSU-Next Legacy for OnePlus 9R (lemonades) - EvolutionX / LineageOS 21 (Android 14)
 
             This build uses [KernelSU-Next](https://github.com/rifsxd/KernelSU-Next) with the legacy branch which:
             - Supports non-GKI kernels (4.4-4.19)
@@ -311,8 +311,7 @@ jobs:
             - Or fastboot flash the `boot.img` directly
 
             ### Manager
-            Use KernelSU Manager from: https://github.com/tiann/KernelSU/releases
-            Or KernelSU-Next Manager from: https://github.com/rifsxd/KernelSU-Next/releases
+            Use KernelSU-Next Manager from: https://github.com/rifsxd/KernelSU-Next/releases
           files: |
             ${{ env.ZIP_NAME }}
             ${{ env.BOOT_IMG }}
