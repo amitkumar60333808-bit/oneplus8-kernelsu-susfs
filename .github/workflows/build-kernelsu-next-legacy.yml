@@ -195,6 +195,12 @@ jobs:
           echo "=== KernelSU source files ==="
           ls -la drivers/kernelsu/
 
+      - name: Add Manual Hooks (non-GKI required)
+        run: |
+          cd kernel
+          echo "Running manual hooks script for non-GKI kernel..."
+          bash $GITHUB_WORKSPACE/scripts/add-ksu-hooks.sh
+
       - name: Check KernelSU Integration
         run: |
           cd kernel
