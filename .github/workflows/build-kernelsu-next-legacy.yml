@@ -104,6 +104,11 @@ jobs:
           __weak int smblib_read(struct smb_charger *chg, u16 addr, u8 *val) { return -1; }
           __weak int smblib_write(struct smb_charger *chg, u16 addr, u8 val) { return -1; }
           __weak int smblib_masked_write(struct smb_charger *chg, u16 addr, u8 mask, u8 val) { return -1; }
+          __weak int oplus_gauge_init(void) { return 0; }
+          __weak int get_PCB_Version(void) { return 0; }
+          __weak int opticalfp_irq_handler_register(void *a) { return 0; }
+          __weak int is_project(int a) { return 0; }
+          __weak void switch_headset_state(void) {}
           STUBEOF
           echo "obj-y += oplus_stubs.o" >> drivers/Makefile
           echo "Created Oplus stubs for missing symbols"
