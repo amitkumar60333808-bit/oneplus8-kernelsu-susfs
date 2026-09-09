@@ -245,18 +245,18 @@ jobs:
           rm -rf .git modules patch ramdisk
           cp ../out/arch/arm64/boot/Image .
           sed -i 's/do.devicecheck=.*/do.devicecheck=1/g' anykernel.sh
-          sed -i 's/device.name1=.*/device.name1=instantnoodlep/g' anykernel.sh
+          sed -i 's/device.name1=.*/device.name1=lemonades/g' anykernel.sh
           sed -i 's|block=.*|block=/dev/block/bootdevice/by-name/boot;|g' anykernel.sh
           sed -i 's/is_slot_device=.*/is_slot_device=1;/g' anykernel.sh
 
-          ZIP_NAME="KernelSU-Next-Legacy_OnePlus8Pro_$(date +%Y%m%d).zip"
+          ZIP_NAME="KernelSU-Next-Legacy_OnePlus9R_$(date +%Y%m%d).zip"
           zip -r9 "$GITHUB_WORKSPACE/$ZIP_NAME" * -x .git README.md *placeholder
           echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
 
       - name: Create boot.img
         run: |
           cd kernel
-          BOOT_IMG="KernelSU-Next-Legacy_boot_OnePlus8Pro_$(date +%Y%m%d).img"
+          BOOT_IMG="KernelSU-Next-Legacy_boot_OnePlus9R_$(date +%Y%m%d).img"
 
           # Use pre-extracted ramdisk and dtb from repo
           lz4 -l -12 --favor-decSpeed "$GITHUB_WORKSPACE/lineage-os/ramdisk.cpio" ramdisk.cpio.lz4
@@ -307,7 +307,7 @@ jobs:
             - Proper hooks for older kernels
 
             ### Installation
-            - Flash `KernelSU-Next-Legacy_OnePlus8Pro_*.zip` via TWRP/custom recovery
+            - Flash `KernelSU-Next-Legacy_OnePlus9R_*.zip` via TWRP/custom recovery
             - Or fastboot flash the `boot.img` directly
 
             ### Manager
