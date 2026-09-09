@@ -128,6 +128,14 @@ jobs:
           # Move KernelSU to drivers/kernelsu
           mkdir -p drivers/kernelsu
           mv KernelSU/kernel/* drivers/kernelsu/
+
+          # kernel/include/uapi is a symlink to ../../uapi - copy the real uapi dir
+          cp -r KernelSU/uapi drivers/kernelsu/uapi
+
+          # Fix broken symlink: replace with real directory
+          rm -f drivers/kernelsu/include/uapi
+          ln -s ../uapi drivers/kernelsu/include/uapi
+
           rm -rf KernelSU
 
           # Add to drivers/Kconfig
